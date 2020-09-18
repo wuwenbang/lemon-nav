@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.scss'
 function App() {
+  const [bookMarkList, setBookMarkList] = useState([1, 2, 3, 4, 5, 6])
+
   return (
     <div className="wrapper">
       <form className="search" id="myForm" action="http://www.baidu.com/s" target="_blank">
@@ -24,6 +26,11 @@ function App() {
           </svg>
         </div>
       </form>
+      <ul className="bookmark-list">
+        {bookMarkList.map((item) => {
+          return <li>{item}</li>
+        })}
+      </ul>
       <div className="star-wrapper">
         <div className="star-surround">
           <svg className="icon" aria-hidden="true" className="star">

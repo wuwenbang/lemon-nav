@@ -15,3 +15,10 @@ code {
 input:-webkit-autofill {
   transition: background-color 5000s ease-in-out 0s;
 }
+
+ul,
+li {
+  padding: 0;
+  margin: 0;
+  list-style: none
+}
