@@ -44,7 +44,7 @@ function App() {
         })}
         <li className="bookmark-item">
           <a className="bookmark-link" onClick={createBookmark}>
-            <svg className="icon bookmark-icon" aria-hidden="true">
+            <svg className="icon bookmark-icon bookmark-add" aria-hidden="true">
               <use xlinkHref="#icon-add"></use>
             </svg>
           </a>
