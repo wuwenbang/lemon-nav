@@ -1,11 +1,28 @@
-$border-color-focus: #888;
-
-@keyframes primary-shadow {
-  to {
-    box-shadow: lighten($border-color-focus, 36%) 0px 0px 0px 2px;
-  }
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: content-box;
 }
-
+video {
+  position: fixed;
+  right: 0px;
+  bottom: 0px;
+  min-width: 100%;
+  min-height: 100%;
+  height: auto;
+  width: auto;
+  /*加滤镜*/
+  /*filter: blur(15px); //背景模糊设置 */
+  /*-webkit-filter: grayscale(100%);*/
+  /*filter:grayscale(100%); //背景灰度设置*/
+  z-index: -11;
+}
+source {
+  min-width: 100%;
+  min-height: 100%;
+  height: auto;
+  width: auto;
+}
 .wrapper {
   display: flex;
   align-items: center;
@@ -122,7 +139,7 @@ $border-color-focus: #888;
         }
       }
       .bookmark-delete {
-        transition: all 0.5s;
+        transition: all 0.6s;
         position: absolute;
         top: 0;
         right: 0;

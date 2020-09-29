@@ -16,6 +16,9 @@ function App() {
   }
   return (
     <div className="wrapper">
+      {/* <video autoPlay loop muted>
+        <source src="?" type="video/mp4" />
+      </video> */}
       <form className="search" id="myForm" action="http://www.baidu.com/s" target="_blank">
         <div className="search-icon">
           <svg className="icon" aria-hidden="true">
