@@ -1,10 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import './App.scss'
 import useBookmark from '../hooks/useBookmark'
 function App() {
-  const { bookmarks, setBookmarks, createBookmark, deleteBookmark } = useBookmark()
+  const { bookmarks, createBookmark, deleteBookmark } = useBookmark()
   const onDeleteBookmark = (e) => {
     deleteBookmark(parseInt(e.currentTarget.id))
+  }
+  const onFocusStyle = () => {
+    let search = document.querySelector('.search')
+    search.style.boxShadow = '0 0 0 3px rgba(24, 114, 255, 0.5)'
+  }
+  const onBlurStyle = () => {
+    let search = document.querySelector('.search')
+    search.style.boxShadow = 'none'
   }
   return (
     <div className="wrapper">
@@ -15,6 +23,8 @@ function App() {
           </svg>
         </div>
         <input
+          onFocus={onFocusStyle}
+          onBlur={onBlurStyle}
           className="search-input"
           name="wd"
           placeholder="请输入搜索内容"

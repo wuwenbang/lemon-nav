@@ -12,7 +12,7 @@ $border-color-focus: #888;
   justify-content: flex-start;
   flex-direction: column;
   height: 100vh;
-  background: gray;
+  background: #ddd;
   .search {
     background: white;
     border: 1px solid #dfe1e5;
@@ -80,9 +80,9 @@ $border-color-focus: #888;
     width: 582px;
     flex-wrap: wrap;
     margin-top: 24px;
-    &::-webkit-scrollbar {
-      display: none;
-    }
+    // &::-webkit-scrollbar {
+    //   display: none;
+    // }
     .bookmark-item {
       position: relative;
       margin: 4px;
@@ -90,6 +90,9 @@ $border-color-focus: #888;
       width: 56px;
       height: 56px;
       .bookmark-link {
+        &:hover {
+          box-shadow: 0 0 0 2px rgba(24, 114, 255, 0.5);
+        }
         background: white;
         display: inline-block;
         color: inherit;
