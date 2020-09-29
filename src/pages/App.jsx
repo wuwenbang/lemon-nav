@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React from 'react'
 import './App.scss'
 import useBookmark from '../hooks/useBookmark'
 function App() {
@@ -8,7 +8,7 @@ function App() {
   }
   const onFocusStyle = () => {
     let search = document.querySelector('.search')
-    search.style.boxShadow = '0 0 0 3px rgba(24, 114, 255, 0.5)'
+    search.style.boxShadow = '0 0 0 2px rgba(24, 114, 255, 0.5)'
   }
   const onBlurStyle = () => {
     let search = document.querySelector('.search')
@@ -28,7 +28,7 @@ function App() {
           className="search-input"
           name="wd"
           placeholder="请输入搜索内容"
-          autoComplete="on"
+          autoComplete="off"
           autoFocus="autofocus"
           maxLength="255"
         />

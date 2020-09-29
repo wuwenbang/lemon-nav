@@ -14,6 +14,7 @@ $border-color-focus: #888;
   height: 100vh;
   background: #ddd;
   .search {
+    transition: all 0.5s;
     background: white;
     border: 1px solid #dfe1e5;
     width: 582px;
@@ -84,6 +85,7 @@ $border-color-focus: #888;
     //   display: none;
     // }
     .bookmark-item {
+      transition: all 1s;
       position: relative;
       margin: 4px;
       padding: 6px;
@@ -93,6 +95,7 @@ $border-color-focus: #888;
         &:hover {
           box-shadow: 0 0 0 2px rgba(24, 114, 255, 0.5);
         }
+        transition: all 0.5s;
         background: white;
         display: inline-block;
         color: inherit;
@@ -115,10 +118,11 @@ $border-color-focus: #888;
       }
       &:hover {
         .bookmark-delete {
-          display: inline-block;
+          opacity: 1;
         }
       }
       .bookmark-delete {
+        transition: all 0.5s;
         position: absolute;
         top: 0;
         right: 0;
@@ -126,7 +130,7 @@ $border-color-focus: #888;
         width: 14px;
         height: 14px;
         cursor: pointer;
-        display: none;
+        opacity: 0;
       }
     }
   }
