@@ -21,7 +21,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "gh-pages": "react-app-rewired build && gh-pages -d build"
+    "gh-pages": "react-app-rewired build && gh-pages -d build",
+    "deploy": "sh scripts/deploy.sh"
   },
   "eslintConfig": {
     "extends": "react-app"

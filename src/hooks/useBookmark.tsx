@@ -13,9 +13,11 @@ const useBookmark = () => {
     let locakBookmarks = JSON.parse(window.localStorage.getItem('bookmarks') || '[]')
     if (locakBookmarks.length === 0) {
       locakBookmarks = [
+        { id: createId(), url: 'https://www.gitee.com' },
+        { id: createId(), url: 'https://www.github.com' },
         { id: createId(), url: 'https://www.zhihu.com' },
         { id: createId(), url: 'https://www.bilibili.com' },
-        { id: createId(), url: 'https://www.cnblogs.com' },
+        { id: createId(), url: 'https://www.jianshu.com' },
         { id: createId(), url: 'https://www.douban.com' },
       ]
     }

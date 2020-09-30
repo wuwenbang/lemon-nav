@@ -8,7 +8,7 @@ function App() {
   }
   const onFocusStyle = () => {
     let search = document.querySelector('.search')
-    search.style.boxShadow = '0 0 0 2px rgba(24, 114, 255, 0.5)'
+    search.style.boxShadow = '0 0 0 2px rgba(150, 150, 150, 0.75)'
   }
   const onBlurStyle = () => {
     let search = document.querySelector('.search')
