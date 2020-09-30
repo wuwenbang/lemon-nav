@@ -1,7 +1,8 @@
 {
   "name": "lemon-nav",
   "version": "0.1.0",
-  "homepage": "lemon-nav",
+  "license": "MIT",
+  "homepage": "lemon-nav-website",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",

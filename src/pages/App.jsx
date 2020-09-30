@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './App.scss'
 import useBookmark from '../hooks/useBookmark'
 function App() {
+  const [settingFlag, setSettingFlag] = useState(false)
   const { bookmarks, createBookmark, deleteBookmark } = useBookmark()
+
   const onDeleteBookmark = (e) => {
     deleteBookmark(parseInt(e.currentTarget.id))
   }
@@ -13,6 +15,26 @@ function App() {
   const onBlurStyle = () => {
     let search = document.querySelector('.search')
     search.style.boxShadow = 'none'
+  }
+  const onDragStart = (e) => {
+    // React 异步访问事件属性需加上 event.persist()
+    // 这会从事件池中移除该合成函数并允许对该合成事件的引用被保留下来。
+    e.persist()
+    setTimeout(() => {
+      e.target.style.display = 'none'
+    }, 0)
+  }
+  // const onDragOver = (e) => {
+  //   e.preventDefault()
+  // }
+  // const onDragEnter = (e) => {
+  //   e.preventDefault()
+  // }
+  const onSettingOpen = () => {
+    setSettingFlag(true)
+  }
+  const onSettingClose = () => {
+    setSettingFlag(false)
   }
   return (
     <div className="wrapper">
@@ -46,9 +68,17 @@ function App() {
       <ul className="bookmark-list">
         {bookmarks.map((item) => {
           return (
-            <li className="bookmark-item" key={item.id} id={item.id}>
-              <a className="bookmark-link" href={item.url} target="_blank">
-                <img className="bookmark-icon" src={item.url + '/favicon.ico'}></img>
+            <li
+              className="bookmark-item"
+              key={item.id}
+              id={item.id}
+              draggable="true"
+              onDragStart={onDragStart}
+              // onDragOver={onDragOver}
+              // onDragEnter={onDragEnter}
+            >
+              <a className="bookmark-link" href={item.url} target="_blank" draggable="false">
+                <img className="bookmark-icon" src={item.url + '/favicon.ico'} draggable="false"></img>
               </a>
               <svg className="icon bookmark-delete" aria-hidden="true" onClick={onDeleteBookmark} id={item.id}>
                 <use xlinkHref="#icon-close"></use>
@@ -56,14 +86,35 @@ function App() {
             </li>
           )
         })}
-        <li className="bookmark-item">
-          <a className="bookmark-link" onClick={createBookmark}>
-            <svg className="icon bookmark-icon bookmark-add" aria-hidden="true">
+        <li className="bookmark-item" draggable="true">
+          <a className="bookmark-link" onClick={createBookmark} draggable="false">
+            <svg className="icon bookmark-icon bookmark-add" aria-hidden="true" draggable="false">
               <use xlinkHref="#icon-add"></use>
             </svg>
           </a>
         </li>
       </ul>
+      <div className="setting-btn" onClick={onSettingOpen}>
+        <svg className="icon" aria-hidden="true">
+          <use xlinkHref="#icon-setting"></use>
+        </svg>
+      </div>
+      {settingFlag ? (
+        <div className="setting-window">
+          <div className="setting-window-topbar">
+            <div className="setting-window-close">
+              <svg className="icon " aria-hidden="true" onClick={onSettingClose}>
+                <use xlinkHref="#icon-close"></use>
+              </svg>
+            </div>
+          </div>
+          <div className="setting-window-sider"></div>
+          <div className="setting-window-main"></div>
+        </div>
+      ) : (
+        <div></div>
+      )}
+
       {/* <div className="star-wrapper">
         <div className="star-surround">
           <svg className="icon" aria-hidden="true" className="star">

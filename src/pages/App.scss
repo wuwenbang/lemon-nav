@@ -96,6 +96,14 @@ source {
       }
     }
   }
+  // @keyframes disappear {
+  //   0% {
+  //     transform: scale(100%);
+  //   }
+  //   100% {
+  //     transform: scale(0);
+  //   }
+  // }
 
   .bookmark-list {
     max-height: 230px;
@@ -111,12 +119,17 @@ source {
     //   display: none;
     // }
     .bookmark-item {
-      transition: all 1s;
+      &.disappear {
+        animation: disappear 1s;
+      }
       position: relative;
       margin: 4px;
       padding: 6px;
       width: 56px;
       height: 56px;
+      &.dragging {
+        display: none;
+      }
       .bookmark-link {
         &:hover {
           box-shadow: 0 0 0 2px rgba(150, 150, 150, 0.75);
@@ -203,6 +216,49 @@ source {
         position: absolute;
         left: 0;
         bottom: 0;
+      }
+    }
+  }
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  .setting-btn {
+    position: absolute;
+    top: 4px;
+    right: 12px;
+    cursor: pointer;
+    &:hover {
+      animation: spin 2s linear infinite;
+    }
+    .icon {
+      height: 20px;
+      width: 20px;
+      color: gray;
+    }
+  }
+  .setting-window {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 500px;
+    width: 600px;
+    background: white;
+    display: block;
+    border-radius: 10px;
+    .setting-window-close {
+      cursor: pointer;
+      position: absolute;
+      top: 6px;
+      right: 6px;
+      .icon {
+        height: 16px;
+        width: 16px;
       }
     }
   }
