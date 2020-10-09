@@ -101,15 +101,22 @@ function App() {
       </div>
       {settingFlag ? (
         <div className="setting-window">
-          <div className="setting-window-topbar">
+          <header className="setting-window-topbar">
+            <div className="setting-window-icon"></div>
+            <div className="setting-window-title">设置</div>
             <div className="setting-window-close">
               <svg className="icon " aria-hidden="true" onClick={onSettingClose}>
                 <use xlinkHref="#icon-close"></use>
               </svg>
             </div>
-          </div>
-          <div className="setting-window-sider"></div>
-          <div className="setting-window-main"></div>
+          </header>
+          <main className="setting-window-main">
+            <div className="setting-window-sider">
+              <div className="setting-window-item">背景</div>
+              <div className="setting-window-item">关于</div>
+            </div>
+            <div className="setting-window-content"></div>
+          </main>
         </div>
       ) : (
         <div></div>

@@ -251,14 +251,52 @@ source {
     background: white;
     display: block;
     border-radius: 10px;
-    .setting-window-close {
-      cursor: pointer;
-      position: absolute;
-      top: 6px;
-      right: 6px;
-      .icon {
+    display: flex;
+    flex-direction: column;
+    .setting-window-topbar {
+      border-bottom: 1px solid gray;
+      display: flex;
+      justify-content: space-between;
+      .setting-window-icon {
         height: 16px;
         width: 16px;
+        margin: 6px;
+      }
+      .setting-window-title {
+        font-size: 15px;
+        line-height: 16px;
+        margin: 6px;
+      }
+      .setting-window-close {
+        cursor: pointer;
+        margin: 6px;
+        .icon {
+          height: 16px;
+          width: 16px;
+        }
+      }
+    }
+    .setting-window-main {
+      flex-grow: 1;
+      display: flex;
+      .setting-window-sider {
+        border-right: 1px solid gray;
+        .setting-window-item {
+          height: 36px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          padding-left: 24px;
+          padding-right: 32px;
+          font-size: 16px;
+          color: gray;
+          &:hover {
+            color: #444;
+          }
+        }
+      }
+      .setting-window-content {
+        flex-grow: 1;
       }
     }
   }
