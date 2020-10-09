@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './App.scss'
 import useBookmark from '../hooks/useBookmark'
 function App() {
   const [settingFlag, setSettingFlag] = useState(false)
   const { bookmarks, createBookmark, deleteBookmark } = useBookmark()
-
+  useEffect(() => {
+    let image = window.localStorage.getItem('image') || 'https://blog.mrabit.com/bing/today'
+    document.querySelector('.bg').src = image
+  }, [])
   const onDeleteBookmark = (e) => {
     deleteBookmark(parseInt(e.currentTarget.id))
   }
@@ -42,7 +45,7 @@ function App() {
     reader.readAsDataURL(selectedFile)
     reader.onload = function () {
       document.querySelector('.importImage').src = this.result
-      // document.querySelector('.bg').src = this.result
+      document.querySelector('.bg').src = this.result
       window.localStorage.setItem('image', this.result)
     }
   }
@@ -91,7 +94,7 @@ function App() {
                 <img className="bookmark-icon" src={item.url + '/favicon.ico'} draggable="false"></img>
               </a>
               <svg className="icon bookmark-delete" aria-hidden="true" onClick={onDeleteBookmark} id={item.id}>
-                <use xlinkHref="#icon-close"></use>
+                <use xlinkHref="#icon-delete"></use>
               </svg>
             </li>
           )

@@ -10,9 +10,9 @@ const useBookmark = () => {
 
   const [bookmarks, setBookmarks] = useState<Bookmark[]>([])
   useEffect(() => {
-    let locakBookmarks = JSON.parse(window.localStorage.getItem('bookmarks') || '[]')
-    if (locakBookmarks.length === 0) {
-      locakBookmarks = [
+    let localBookmarks = JSON.parse(window.localStorage.getItem('bookmarks') || '[]')
+    if (localBookmarks.length === 0) {
+      localBookmarks = [
         { id: createId(), url: 'https://www.bilibili.com' },
         { id: createId(), url: 'https://www.zhihu.com' },
         { id: createId(), url: 'https://www.jianshu.com' },
@@ -21,7 +21,7 @@ const useBookmark = () => {
         { id: createId(), url: 'https://www.github.com' },
       ]
     }
-    setBookmarks(locakBookmarks)
+    setBookmarks(localBookmarks)
   }, [])
   // 依赖更新自动存储到 localStorage
   useUpdate(() => {
