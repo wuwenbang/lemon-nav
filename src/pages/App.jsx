@@ -36,12 +36,22 @@ function App() {
   const onSettingClose = () => {
     setSettingFlag(false)
   }
+  const onImportFile = () => {
+    let selectedFile = document.querySelector('.importFile').files[0]
+    let reader = new FileReader()
+    reader.readAsDataURL(selectedFile)
+    reader.onload = function () {
+      document.querySelector('.importImage').src = this.result
+      // document.querySelector('.bg').src = this.result
+      window.localStorage.setItem('image', this.result)
+    }
+  }
   return (
     <div className="wrapper">
       {/* <video autoPlay loop muted>
         <source src="?" type="video/mp4" />
       </video> */}
-      <div className="bg"></div>
+      <img src="https://blog.mrabit.com/bing/today" className="bg"></img>
       <form className="search" id="myForm" action="http://www.baidu.com/s" target="_blank">
         <div className="search-icon">
           <svg className="icon" aria-hidden="true">
@@ -115,7 +125,10 @@ function App() {
               <div className="setting-window-item">背景</div>
               <div className="setting-window-item">关于</div>
             </div>
-            <div className="setting-window-content"></div>
+            <div className="setting-window-content">
+              <img src="" className="importImage" alt="导入图片" />
+              <input type="file" className="importFile" onChange={onImportFile} />
+            </div>
           </main>
         </div>
       ) : (
