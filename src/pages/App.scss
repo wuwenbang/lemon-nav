@@ -25,6 +25,7 @@ source {
   height: auto;
   width: auto;
 }
+
 .wrapper {
   .bg {
     position: absolute;
@@ -236,7 +237,9 @@ source {
     right: 12px;
     cursor: pointer;
     &:hover {
-      animation: spin 2s linear infinite;
+      .icon {
+        animation: spin 2s linear infinite;
+      }
     }
     .icon {
       height: 20px;
@@ -245,75 +248,133 @@ source {
     }
   }
   .setting-window {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 28px;
+    right: 24px;
+    background: white;
+    border-radius: 5px;
+    transition: all 0.3s;
+    transform-origin: top right;
+
+    &.disappear {
+      transform: scale(0);
+      opacity: 0;
+    }
+    .setting-window-item {
+      transition: all 0.3s;
+      font-size: 14px;
+      padding: 12px 0px 12px 20px;
+      min-width: 100px;
+      cursor: pointer;
+      &:hover {
+        color: $theme-blue-hover;
+      }
+    }
+  }
+  .setting-background {
+    background: white;
+    width: 600px;
+    height: 500px;
+    border-radius: 20px;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    height: 500px;
-    width: 600px;
-    background: white;
-    display: block;
-    border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    .setting-window-topbar {
-      border-bottom: 1px solid gray;
-      display: flex;
-      justify-content: space-between;
-      .setting-window-icon {
-        height: 16px;
-        width: 16px;
-        margin: 6px;
+    transform: scale(1) translate(-50%, -50%);
+    transform-origin: top right;
+    transition: all 0.25s linear;
+    &.disappear {
+      transform: scale(0) translate(-50%, -50%);
+      opacity: 0;
+    }
+    .setting-background-content {
+      padding: 40px 70px;
+      .content-title {
+        font-size: 25px;
+        font-weight: bold;
       }
-      .setting-window-title {
-        font-size: 15px;
-        line-height: 16px;
-        margin: 6px;
-      }
-      .setting-window-close {
-        cursor: pointer;
-        margin: 6px;
-        .icon {
-          color: #b4b4b4;
-          height: 16px;
-          width: 16px;
-          &:hover {
-            color: $theme-blue-hover;
+      .setting-background-item {
+        padding-top: 24px;
+        .item-title {
+          font-size: 18px;
+          font-weight: bold;
+        }
+        .import-wrapper {
+          display: flex;
+          padding-top: 12px;
+          .import-image {
+            width: 135px;
+            height: 90px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            object-fit: cover;
+          }
+          .import-text {
+            padding: 0px 24px;
+            .import-describe {
+              font-size: 16px;
+              font-weight: bold;
+            }
+            .import-describe-sub {
+              font-size: 14px;
+              color: gray;
+            }
+            .import-file {
+              display: none;
+            }
+
+            .import-file-button {
+              cursor: pointer;
+              margin: 14px 0 0 0;
+              font-weight: bold;
+              width: 105px;
+              height: 35px;
+              background: $theme-blue;
+              color: white;
+              border-radius: 5px;
+              border: none;
+              outline: none;
+            }
+          }
+        }
+        .image-wrapper {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding-top: 12px;
+          .image-item {
+            width: 135px;
+            height: 90px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            object-fit: cover;
+            cursor: pointer;
+            &:hover {
+              -webkit-filter: brightness(0.85);
+              filter: brightness(0.85);
+            }
           }
         }
       }
     }
-    .setting-window-main {
-      flex-grow: 1;
+    .setting-background-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      color: #999;
+      cursor: pointer;
       display: flex;
-      .setting-window-sider {
-        border-right: 1px solid gray;
-        .setting-window-item {
-          height: 36px;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          padding-left: 24px;
-          padding-right: 32px;
-          font-size: 16px;
-          color: gray;
-          &:hover {
-            color: #444;
-          }
-        }
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      .icon {
+        width: 15px;
+        height: 15px;
       }
-      .setting-window-content {
-        flex-grow: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        .importImage {
-          margin: 24px;
-          height: 200px;
-          width: 300px;
-          border: 1px solid gray;
-          object-fit: cover;
-        }
+      &:hover {
+        color: $theme-blue-hover;
       }
     }
   }
