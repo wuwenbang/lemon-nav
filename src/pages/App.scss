@@ -309,6 +309,11 @@ source {
             border-radius: 6px;
             border: 1px solid #ddd;
             object-fit: cover;
+            cursor: pointer;
+            &.image-selected {
+              -webkit-filter: brightness(0.8);
+              filter: brightness(0.8);
+            }
           }
           .import-text {
             padding: 0px 24px;
@@ -317,6 +322,7 @@ source {
               font-weight: bold;
             }
             .import-describe-sub {
+              padding-top: 2px;
               font-size: 14px;
               color: gray;
             }
@@ -326,7 +332,7 @@ source {
 
             .import-file-button {
               cursor: pointer;
-              margin: 14px 0 0 0;
+              margin: 12px 0 0 0;
               font-weight: bold;
               width: 105px;
               height: 35px;
@@ -351,8 +357,12 @@ source {
             object-fit: cover;
             cursor: pointer;
             &:hover {
-              -webkit-filter: brightness(0.85);
-              filter: brightness(0.85);
+              -webkit-filter: brightness(0.8);
+              filter: brightness(0.8);
+            }
+            &.image-selected {
+              -webkit-filter: brightness(0.8);
+              filter: brightness(0.8);
             }
           }
         }

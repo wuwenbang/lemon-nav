@@ -56,10 +56,15 @@ function App() {
   }
 
   const onImportFile = () => {
+    document.querySelectorAll('.image-item').forEach((item) => {
+      item.classList.remove('image-selected')
+    })
+    document.querySelector('.import-image').classList.remove('image-selected')
     let selectedFile = document.querySelector('.import-file').files[0]
     let reader = new FileReader()
     reader.readAsDataURL(selectedFile)
     reader.onload = function () {
+      document.querySelector('.import-image').classList.add('image-selected')
       document.querySelector('.import-image').src = this.result
       document.querySelector('.bg').src = this.result
       window.localStorage.setItem('image', this.result)
@@ -73,6 +78,16 @@ function App() {
   }
   const onSettingBgOpen = () => {
     document.querySelector('.setting-background').classList.remove('disappear')
+  }
+  const onImageSelected = (e) => {
+    document.querySelectorAll('.image-item').forEach((item) => {
+      item.classList.remove('image-selected')
+    })
+    document.querySelector('.import-image').classList.remove('image-selected')
+    e.target.classList.add('image-selected')
+    let image = e.target.src
+    document.querySelector('.bg').src = image
+    window.localStorage.setItem('image', image)
   }
   return (
     <div className="wrapper">
@@ -149,7 +164,7 @@ function App() {
           <div className="setting-background-item">
             <div className="item-title">自定义壁纸</div>
             <div className="import-wrapper">
-              <img className="import-image" src={defaultImage} alt="导入图片" />
+              <img className="import-image" src={defaultImage} alt="导入图片" onClick={onImageSelected} />
               <div className="import-text">
                 <div className="import-describe">导入你喜欢的图片设为壁纸</div>
                 <div className="import-describe-sub">建议尺寸：分辨率 1920x1080 或以上</div>
@@ -163,9 +178,9 @@ function App() {
           <div className="setting-background-item">
             <div className="item-title">默认壁纸</div>
             <div className="image-wrapper">
-              <img className="image-item" src={defaultImage} alt="默认壁纸" />
-              <img className="image-item" src={defaultImage} alt="默认壁纸" />
-              <img className="image-item" src={defaultImage} alt="默认壁纸" />
+              <img className="image-item" src={defaultImage} alt="默认壁纸" onClick={onImageSelected} />
+              <img className="image-item" src={image1} alt="默认壁纸" onClick={onImageSelected} />
+              <img className="image-item" src={defaultImage} alt="默认壁纸" onClick={onImageSelected} />
             </div>
           </div>
         </main>
