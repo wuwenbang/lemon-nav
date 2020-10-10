@@ -99,14 +99,6 @@ source {
       }
     }
   }
-  // @keyframes disappear {
-  //   0% {
-  //     transform: scale(100%);
-  //   }
-  //   100% {
-  //     transform: scale(0);
-  //   }
-  // }
 
   .bookmark-list {
     max-height: 230px;
@@ -369,6 +361,48 @@ source {
       }
     }
     .setting-background-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      color: #999;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 20px;
+      height: 20px;
+      .icon {
+        width: 15px;
+        height: 15px;
+      }
+      &:hover {
+        color: $theme-blue-hover;
+      }
+    }
+  }
+  .setting-about {
+    background: white;
+    width: 600px;
+    height: 500px;
+    border-radius: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: scale(1) translate(-50%, -50%);
+    transform-origin: top right;
+    transition: all 0.25s linear;
+    &.disappear {
+      transform: scale(0) translate(-50%, -50%);
+      opacity: 0;
+    }
+    .setting-about-content {
+      padding: 40px 70px;
+      .content-title {
+        font-size: 25px;
+        font-weight: bold;
+      }
+    }
+    .setting-about-close {
       position: absolute;
       top: 12px;
       right: 12px;

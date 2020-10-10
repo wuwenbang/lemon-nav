@@ -89,6 +89,12 @@ function App() {
     document.querySelector('.bg').src = image
     window.localStorage.setItem('image', image)
   }
+  const onSettingAboutOpen = () => {
+    document.querySelector('.setting-about').classList.remove('disappear')
+  }
+  const onSettingAboutClose = () => {
+    document.querySelector('.setting-about').classList.add('disappear')
+  }
   return (
     <div className="wrapper">
       {/* <video autoPlay loop muted>
@@ -156,10 +162,12 @@ function App() {
         <div className="setting-window-item" onClick={onSettingBgOpen}>
           壁纸设置
         </div>
-        <div className="setting-window-item">关于</div>
+        <div className="setting-window-item" onClick={onSettingAboutOpen}>
+          关于网页
+        </div>
       </div>
       <div className="setting-background disappear">
-        <main className="setting-background-content">
+        <div className="setting-background-content">
           <header className="content-title">壁纸图片设置</header>
           <div className="setting-background-item">
             <div className="item-title">自定义壁纸</div>
@@ -183,14 +191,27 @@ function App() {
               <img className="image-item" src={defaultImage} alt="默认壁纸" onClick={onImageSelected} />
             </div>
           </div>
-        </main>
+        </div>
         <div className="setting-background-close" onClick={onSettingBgClose}>
           <svg className="icon " aria-hidden="true">
             <use xlinkHref="#icon-close"></use>
           </svg>
         </div>
       </div>
-
+      <div className="setting-about">
+        <div className="setting-about-content">
+          <header className="content-title">关于网页</header>
+          <div className="content-span">联系邮箱: wuwenbang@foxmail.com</div>
+          <div className="content-span">
+            github: <a>https://github.com/wuwenbang</a>
+          </div>
+        </div>
+        <div className="setting-about-close" onClick={onSettingAboutClose}>
+          <svg className="icon " aria-hidden="true">
+            <use xlinkHref="#icon-close"></use>
+          </svg>
+        </div>
+      </div>
       {/* <div className="star-wrapper">
         <div className="star-surround">
           <svg className="icon" aria-hidden="true" className="star">
