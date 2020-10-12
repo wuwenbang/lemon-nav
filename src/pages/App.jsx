@@ -7,13 +7,18 @@ import image2 from '../assets/image2.jpg'
 import image3 from '../assets/image3.jpg'
 import image4 from '../assets/image4.jpg'
 import image0 from '../assets/image0.jpg'
-
+const bingImage = 'https://blog.mrabit.com/bing/today'
 function App() {
   const [settingFlag, setSettingFlag] = useState(false)
   const { bookmarks, createBookmark, deleteBookmark } = useBookmark()
   useEffect(() => {
-    // https://blog.mrabit.com/bing/today 必应每日一图
-    let image = window.localStorage.getItem('image') || image3
+    let image = ''
+    let bingFlag = window.localStorage.getItem('bingImage')
+    if (bingFlag === 'true') {
+      image = 'https://blog.mrabit.com/bing/today'
+    } else {
+      image = window.localStorage.getItem('image') || image3
+    }
     document.querySelector('.bg').src = image
   }, [])
   useEffect(() => {
@@ -65,7 +70,9 @@ function App() {
     document.querySelectorAll('.image-item').forEach((item) => {
       item.classList.remove('image-selected')
     })
-    document.querySelector('.import-image').classList.remove('image-selected')
+    document.querySelectorAll('.import-image').forEach((item) => {
+      item.classList.remove('image-selected')
+    })
     let selectedFile = document.querySelector('.import-file').files[0]
     let reader = new FileReader()
     reader.readAsDataURL(selectedFile)
@@ -89,7 +96,14 @@ function App() {
     document.querySelectorAll('.image-item').forEach((item) => {
       item.classList.remove('image-selected')
     })
-    document.querySelector('.import-image').classList.remove('image-selected')
+    document.querySelectorAll('.import-image').forEach((item) => {
+      item.classList.remove('image-selected')
+    })
+    if ((e.target.alt = '必应壁纸')) {
+      window.localStorage.setItem('bingImage', true)
+    } else {
+      window.localStorage.setItem('bingImage', false)
+    }
     e.target.classList.add('image-selected')
     let image = e.target.src
     document.querySelector('.bg').src = image
@@ -179,6 +193,15 @@ function App() {
         <div className="setting-background-content">
           <header className="content-title">壁纸图片设置</header>
           <div className="setting-background-item">
+            <p className="item-title">默认壁纸</p>
+            <div className="image-wrapper">
+              <img className="image-item" src={image2} alt="默认壁纸" onClick={onImageSelected} />
+              <img className="image-item" src={image3} alt="默认壁纸" onClick={onImageSelected} />
+              <img className="image-item" src={image4} alt="默认壁纸" onClick={onImageSelected} />
+            </div>
+          </div>
+
+          <div className="setting-background-item">
             <p className="item-title">自定义壁纸</p>
             <div className="import-wrapper">
               <img className="import-image" src={defaultImage} alt="导入图片" onClick={onImageSelected} />
@@ -193,14 +216,17 @@ function App() {
             </div>
           </div>
           <div className="setting-background-item">
-            <p className="item-title">默认壁纸</p>
-            <div className="image-wrapper">
-              <img className="image-item" src={image2} alt="默认壁纸" onClick={onImageSelected} />
-              <img className="image-item" src={image3} alt="默认壁纸" onClick={onImageSelected} />
-              <img className="image-item" src={image4} alt="默认壁纸" onClick={onImageSelected} />
+            <p className="item-title">必应壁纸</p>
+            <div className="import-wrapper">
+              <img className="import-image" src={bingImage} alt="必应壁纸" onClick={onImageSelected} />
+              <div className="import-text">
+                <p className="import-describe">必应每日一图，十分推荐！</p>
+                <p className="import-describe-sub">微软必应搜索壁纸，每天自动更新。</p>
+              </div>
             </div>
           </div>
         </div>
+
         <div className="setting-background-close" onClick={onSettingBgClose}>
           <svg className="icon " aria-hidden="true">
             <use xlinkHref="#icon-close"></use>
