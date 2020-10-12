@@ -5,11 +5,15 @@ import defaultImage from '../assets/default.jpg'
 import image1 from '../assets/image1.jpg'
 import image2 from '../assets/image2.jpg'
 import image3 from '../assets/image3.jpg'
+import image4 from '../assets/image4.jpg'
+import image0 from '../assets/image0.jpg'
+
 function App() {
   const [settingFlag, setSettingFlag] = useState(false)
   const { bookmarks, createBookmark, deleteBookmark } = useBookmark()
   useEffect(() => {
-    let image = window.localStorage.getItem('image') || 'https://blog.mrabit.com/bing/today'
+    // https://blog.mrabit.com/bing/today 必应每日一图
+    let image = window.localStorage.getItem('image') || image3
     document.querySelector('.bg').src = image
   }, [])
   useEffect(() => {
@@ -191,9 +195,9 @@ function App() {
           <div className="setting-background-item">
             <p className="item-title">默认壁纸</p>
             <div className="image-wrapper">
-              <img className="image-item" src={image1} alt="默认壁纸" onClick={onImageSelected} />
               <img className="image-item" src={image2} alt="默认壁纸" onClick={onImageSelected} />
               <img className="image-item" src={image3} alt="默认壁纸" onClick={onImageSelected} />
+              <img className="image-item" src={image4} alt="默认壁纸" onClick={onImageSelected} />
             </div>
           </div>
         </div>
@@ -212,7 +216,7 @@ function App() {
               <p className="describe-span">
                 这是一个简洁的导航网站。
                 <br />
-                你可以根据自己的喜好更换背景图片以及添加删除书签。
+                你可以根据自己的喜好更换背景壁纸以及增删书签。
               </p>
             </div>
             <header className="describe-title">关于作者</header>
