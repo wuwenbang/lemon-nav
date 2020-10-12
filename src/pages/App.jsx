@@ -95,6 +95,9 @@ function App() {
   const onSettingAboutClose = () => {
     document.querySelector('.setting-about').classList.add('disappear')
   }
+  const onClickWebsite = (e) => {
+    window.open(e.target.innerHTML)
+  }
   return (
     <div className="wrapper">
       {/* <video autoPlay loop muted>
@@ -170,12 +173,12 @@ function App() {
         <div className="setting-background-content">
           <header className="content-title">壁纸图片设置</header>
           <div className="setting-background-item">
-            <div className="item-title">自定义壁纸</div>
+            <p className="item-title">自定义壁纸</p>
             <div className="import-wrapper">
               <img className="import-image" src={defaultImage} alt="导入图片" onClick={onImageSelected} />
               <div className="import-text">
-                <div className="import-describe">导入你喜欢的图片设为壁纸</div>
-                <div className="import-describe-sub">建议尺寸：分辨率 1920x1080 或以上</div>
+                <p className="import-describe">导入你喜欢的图片设为壁纸</p>
+                <p className="import-describe-sub">建议尺寸：分辨率 1920x1080 或以上</p>
                 <input type="file" className="import-file" onChange={onImportFile} />
                 <button className="import-file-button" onClick={onClickImportFile}>
                   浏览文件
@@ -184,7 +187,7 @@ function App() {
             </div>
           </div>
           <div className="setting-background-item">
-            <div className="item-title">默认壁纸</div>
+            <p className="item-title">默认壁纸</p>
             <div className="image-wrapper">
               <img className="image-item" src={defaultImage} alt="默认壁纸" onClick={onImageSelected} />
               <img className="image-item" src={image1} alt="默认壁纸" onClick={onImageSelected} />
@@ -200,10 +203,26 @@ function App() {
       </div>
       <div className="setting-about">
         <div className="setting-about-content">
-          <header className="content-title">关于网页</header>
-          <div className="content-span">联系邮箱: wuwenbang@foxmail.com</div>
-          <div className="content-span">
-            github: <a>https://github.com/wuwenbang</a>
+          <header className="about-title">关于网页</header>
+          <div className="about-content">
+            <header className="describe-title">简单介绍</header>
+            <div className="describe-section">
+              <p className="describe-span">
+                这是一个简洁的导航网站。
+                <br />
+                你可以根据自己的喜好更换背景图片以及添加删除书签。
+              </p>
+            </div>
+            <header className="describe-title">关于作者</header>
+            <div className="describe-section">
+              <p className="describe-span">联系邮箱: wuwenbang@foxmail.com</p>
+              <p className="describe-span">
+                码云: <a onClick={onClickWebsite}>https://gitee.com/wuwenbang</a>
+              </p>
+              <p className="describe-span">
+                github: <a onClick={onClickWebsite}>https://github.com/wuwenbang</a>
+              </p>
+            </div>
           </div>
         </div>
         <div className="setting-about-close" onClick={onSettingAboutClose}>

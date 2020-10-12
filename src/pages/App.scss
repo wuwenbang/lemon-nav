@@ -27,6 +27,11 @@ source {
 }
 
 .wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  height: 100vh;
   .bg {
     position: absolute;
     z-index: -1;
@@ -37,11 +42,6 @@ source {
     object-fit: cover;
     transition: 0.4s;
   }
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-  flex-direction: column;
-  height: 100vh;
   .search {
     transition: all 0.5s;
     background: white;
@@ -397,9 +397,30 @@ source {
     }
     .setting-about-content {
       padding: 40px 70px;
-      .content-title {
+      .about-title {
         font-size: 25px;
         font-weight: bold;
+      }
+      .about-content {
+        padding: 24px 0;
+        .describe-title {
+          font-size: 18px;
+          font-weight: bold;
+          line-height: 24px;
+        }
+        .describe-section {
+          padding-top: 12px;
+          padding-bottom: 24px;
+          .describe-span {
+            font-size: 15px;
+            line-height: 24px;
+            a {
+              text-decoration: underline;
+              cursor: pointer;
+              font-weight: bold;
+            }
+          }
+        }
       }
     }
     .setting-about-close {
