@@ -3,6 +3,8 @@ import './App.scss'
 import useBookmark from '../hooks/useBookmark'
 import defaultImage from '../assets/default.jpg'
 import image1 from '../assets/image1.jpg'
+import image2 from '../assets/image2.jpg'
+import image3 from '../assets/image3.jpg'
 function App() {
   const [settingFlag, setSettingFlag] = useState(false)
   const { bookmarks, createBookmark, deleteBookmark } = useBookmark()
@@ -189,9 +191,9 @@ function App() {
           <div className="setting-background-item">
             <p className="item-title">默认壁纸</p>
             <div className="image-wrapper">
-              <img className="image-item" src={defaultImage} alt="默认壁纸" onClick={onImageSelected} />
               <img className="image-item" src={image1} alt="默认壁纸" onClick={onImageSelected} />
-              <img className="image-item" src={defaultImage} alt="默认壁纸" onClick={onImageSelected} />
+              <img className="image-item" src={image2} alt="默认壁纸" onClick={onImageSelected} />
+              <img className="image-item" src={image3} alt="默认壁纸" onClick={onImageSelected} />
             </div>
           </div>
         </div>
@@ -201,7 +203,7 @@ function App() {
           </svg>
         </div>
       </div>
-      <div className="setting-about">
+      <div className="setting-about disappear">
         <div className="setting-about-content">
           <header className="about-title">关于网页</header>
           <div className="about-content">
@@ -220,7 +222,7 @@ function App() {
                 码云: <a onClick={onClickWebsite}>https://gitee.com/wuwenbang</a>
               </p>
               <p className="describe-span">
-                github: <a onClick={onClickWebsite}>https://github.com/wuwenbang</a>
+                GitHub: <a onClick={onClickWebsite}>https://github.com/wuwenbang</a>
               </p>
             </div>
           </div>
