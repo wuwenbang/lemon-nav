@@ -6,7 +6,6 @@ import image1 from '../assets/image1.jpg'
 import image2 from '../assets/image2.jpg'
 import image3 from '../assets/image3.jpg'
 import image4 from '../assets/image4.jpg'
-import image0 from '../assets/image0.jpg'
 const bingImage = 'https://blog.mrabit.com/bing/today'
 function App() {
   const [settingFlag, setSettingFlag] = useState(false)
@@ -54,6 +53,7 @@ function App() {
     dragId = e.target.id
   }
   const onDragOver = (e) => {
+    // 默认的当你dragover的时候会阻止你做drop的操作，所以需要取消这个默认
     e.preventDefault()
   }
   const onDrop = (e) => {
@@ -61,6 +61,7 @@ function App() {
     if (dragId != dropId && dragId != null) {
       let dropIndex = null
       let dragIndex = null
+      // 找到拖拽元素与被拖拽元素的索引
       bookmarks.forEach((item, index) => {
         if (item.id === parseInt(dragId)) {
           dragIndex = index
@@ -209,9 +210,9 @@ function App() {
           <div className="setting-background-item">
             <p className="item-title">默认壁纸</p>
             <div className="image-wrapper">
+              <img className="image-item" src={image1} alt="默认壁纸" onClick={onImageSelected} />
               <img className="image-item" src={image2} alt="默认壁纸" onClick={onImageSelected} />
               <img className="image-item" src={image3} alt="默认壁纸" onClick={onImageSelected} />
-              <img className="image-item" src={image4} alt="默认壁纸" onClick={onImageSelected} />
             </div>
           </div>
 
