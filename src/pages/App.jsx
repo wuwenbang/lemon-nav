@@ -10,8 +10,9 @@ import image0 from '../assets/image0.jpg'
 const bingImage = 'https://blog.mrabit.com/bing/today'
 function App() {
   const [settingFlag, setSettingFlag] = useState(false)
-  const { bookmarks, createBookmark, deleteBookmark } = useBookmark()
-  let container = null
+  const { bookmarks, setBookmarks, createBookmark, deleteBookmark } = useBookmark()
+  // 用来暂存拖拽元素的容器
+  let dragId = null
   useEffect(() => {
     let image = ''
     let bingFlag = window.localStorage.getItem('bingImage')
@@ -50,21 +51,29 @@ function App() {
     search.style.boxShadow = 'none'
   }
   const onDragStart = (e) => {
-    container = e.target
-    console.log(e.target)
+    dragId = e.target.id
   }
   const onDragOver = (e) => {
     e.preventDefault()
   }
   const onDrop = (e) => {
-    if (container != this && container != null) {
-      let list = document.querySelector('.bookmark-list')
-      let temp = document.createElement('li')
-      list.appendChild(temp)
-      let target = e.currentTarget
-      list.replaceChild(temp, target)
-      list.replaceChild(target, container)
-      list.replaceChild(container, temp)
+    let dropId = e.currentTarget.id
+    if (dragId != dropId && dragId != null) {
+      let dropIndex = null
+      let dragIndex = null
+      bookmarks.forEach((item, index) => {
+        if (item.id === parseInt(dragId)) {
+          dragIndex = index
+        }
+        if (item.id === parseInt(dropId)) {
+          dropIndex = index
+        }
+      })
+      let temp = bookmarks[dropIndex]
+      let newArray = [...bookmarks]
+      newArray[dropIndex] = bookmarks[dragIndex]
+      newArray[dragIndex] = temp
+      setBookmarks([...newArray])
     }
   }
   const onSettingToggle = () => {
