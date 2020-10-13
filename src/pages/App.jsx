@@ -11,6 +11,7 @@ const bingImage = 'https://blog.mrabit.com/bing/today'
 function App() {
   const [settingFlag, setSettingFlag] = useState(false)
   const { bookmarks, createBookmark, deleteBookmark } = useBookmark()
+  let container = null
   useEffect(() => {
     let image = ''
     let bingFlag = window.localStorage.getItem('bingImage')
@@ -49,19 +50,23 @@ function App() {
     search.style.boxShadow = 'none'
   }
   const onDragStart = (e) => {
-    // React 异步访问事件属性需加上 event.persist()
-    // 这会从事件池中移除该合成函数并允许对该合成事件的引用被保留下来。
-    e.persist()
-    setTimeout(() => {
-      e.target.style.display = 'none'
-    }, 0)
+    container = e.target
+    console.log(e.target)
   }
-  // const onDragOver = (e) => {
-  //   e.preventDefault()
-  // }
-  // const onDragEnter = (e) => {
-  //   e.preventDefault()
-  // }
+  const onDragOver = (e) => {
+    e.preventDefault()
+  }
+  const onDrop = (e) => {
+    if (container != this && container != null) {
+      let list = document.querySelector('.bookmark-list')
+      let temp = document.createElement('li')
+      list.appendChild(temp)
+      let target = e.currentTarget
+      list.replaceChild(temp, target)
+      list.replaceChild(target, container)
+      list.replaceChild(container, temp)
+    }
+  }
   const onSettingToggle = () => {
     setSettingFlag((flag) => !flag)
   }
@@ -156,8 +161,8 @@ function App() {
               id={item.id}
               draggable="true"
               onDragStart={onDragStart}
-              // onDragOver={onDragOver}
-              // onDragEnter={onDragEnter}
+              onDragOver={onDragOver}
+              onDrop={onDrop}
             >
               <a className="bookmark-link" href={item.url} target="_blank" draggable="false">
                 <img className="bookmark-icon" src={item.url + '/favicon.ico'} draggable="false"></img>
